@@ -2,7 +2,7 @@ async function displayDataFromAPI() {
     try {
         const response = await fetch('http://localhost:3000/api/users');
         if (!response.ok) {
-            throw new Error('Gagal mengambil data dari API');
+            throw new Error('Failed to retrieve data from API');
         }
         const data = await response.json();
         addDataToTable(data);
@@ -19,38 +19,42 @@ function addDataToTable(data) {
 
     data.data.forEach(item => {
         var newRow = tableBody.insertRow();
-        var cellNama = newRow.insertCell(0);
+        var cellName = newRow.insertCell(0);
         var cellEmail = newRow.insertCell(1);
-        var cellTelepon = newRow.insertCell(2);
+        var cellPhone = newRow.insertCell(2);
 
-        cellNama.innerHTML = item.nama;
+        cellName.innerHTML = item.name;
         cellEmail.innerHTML = item.email;
-        cellTelepon.innerHTML = item.telepon;
-    });
+        cellPhone.innerHTML = item.phone;
+    }); 
 }
 
 function validateForm() {
-    var nama = document.getElementById('nama').value;
+    var name = document.getElementById('name').value;
     var email = document.getElementById('email').value;
-    var telepon = document.getElementById('telepon').value;
+    var phone = document.getElementById('phone').value;
+    var password = document.getElementById('password').value;
 
-    if (nama === ''){
-        alert('Nama tidak boleh kosongg!');
+    if (name === ''){
+        alert('Name cannot be empty!');
     }
     else if(email === '' ){
-        alert('Email tidak boleh kosong!');
+        alert('Email cannot be empty!');
     }
-    else if(telepon === '') {
-        alert('Telepon tidak boleh kosong!');
+    else if(phone === '') {
+        alert('Phone number cannot be empty!');
+    }
+    else if(password === '') {
+        alert('Password cannot be empty!');
     }
     else if(!isValidEmail(email)) {
-        alert('Format email tidak valid!');
+        alert('Email format is invalid!');
     }
-    else if(!isValidNumber(telepon)) {
-        alert('Format nomor telepon tidak valid!');
+    else if(!isValidNumber(phone)) {
+        alert('Phone number format is invalid!');
     }
     else{
-        sendDataToApi({ nama, email, telepon });
+        sendDataToApi({ name, email, phone , password});
     }
 }
 
@@ -64,14 +68,14 @@ async function sendDataToApi(data) {
             body: JSON.stringify(data),
         })
         if (response.ok) {
-            alert('Pendaftaran berhasil!');
+            alert('Register Success!');
         } else {
             const responseBody = await response.json();
             alert('Error: ' + responseBody.errors);
         };
       } catch (error) {
             console.error('Error:', error);
-            alert('Terjadi kesalahan saat mengirim permintaan.');
+            alert('An error occurred while sending the request.');
       }
 };
 
@@ -82,16 +86,16 @@ function displayUserInfo() {
     fetch('http://localhost:3000/api/users/' + email)
     .then(response => {
         if (!response.ok) {
-        throw new Error('Gagal mengambil data pengguna');
+        throw new Error('Failed to retrieve user data');
         }
         return response.json();
     })
     .then(userData => {
         userInfoContainer.innerHTML = `
-        <h2>Informasi Pengguna</h2>
-        <p><strong>Nama:</strong> ${userData.data.nama}</p>
+        <h2>User Info</h2>
+        <p><strong>Name:</strong> ${userData.data.name}</p>
         <p><strong>Email:</strong> ${userData.data.email}</p>
-        <p><strong>Telepon:</strong> ${userData.data.telepon}</p>
+        <p><strong>Phone:</strong> ${userData.data.phone}</p>
         `;
     })
     .catch(error => {

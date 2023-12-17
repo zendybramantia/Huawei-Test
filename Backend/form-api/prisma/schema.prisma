@@ -12,8 +12,9 @@ datasource db {
 
 model User {
   email   String @id @db.VarChar(100)
-  nama    String @db.VarChar(100)
-  telepon String @db.VarChar(100)
+  name    String @db.VarChar(100)
+  phone String @db.VarChar(100)
+  password String @db.VarChar(100)
 
   @@map("users")
 }

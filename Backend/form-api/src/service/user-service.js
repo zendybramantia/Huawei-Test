@@ -2,6 +2,7 @@ import { prismaClient } from "../application/database.js";
 import { ResponseError } from "../error/response-error.js";
 import { getUserByEmailValidation, registerUserValidation } from "../validation/user-validation.js";
 import { validate } from "../validation/validation.js";
+import bcrypt from "bcrypt";
 
 const register = async (request) => {
     const user = validate(registerUserValidation, request);
@@ -13,14 +14,16 @@ const register = async (request) => {
     });
 
     if (countUser === 1) {
-        throw new ResponseError(400, "Email sudah digunakan");
+        throw new ResponseError(400, "Email already used!");
     }
+
+    user.password = await bcrypt.hash(user.password, 10)
 
     return prismaClient.user.create({
         data: user,
         select: {
             email: true,
-            nama: true
+            name: true
         }
     });
 }
@@ -34,13 +37,13 @@ const getByEmail = async (email) => {
         },
         select: {
             email: true,
-            nama: true,
-            telepon: true,
+            name: true,
+            phone: true,
         }
     });
 
     if (!user) {
-        throw new ResponseError(404, "user is not found");
+        throw new ResponseError(404, "user is not found!");
     }
 
     return user;
@@ -50,8 +53,8 @@ const getUsers = async () => {
     return prismaClient.user.findMany({
         select: {
             email: true,
-            nama: true,
-            telepon: true,
+            name: true,
+            phone: true,
         }
     });
 }
