@@ -18,7 +18,14 @@
         <input type="text" id="telepon" name="telepon" required>
     
         <button type="button" onclick="validateForm()">Daftar</button>
-      </form>
-      <script src="script.js"></script>
+    </form>
+
+    <div id="userDisplay">
+        <label for="email">Masukkan Email:</label>
+        <input type="email" id="emailInput" required>
+        <button onclick="displayUserInfo()">Tampilkan Informasi</button>
+    <div id="userInfo"></div>
+    </div>  
+    <script src="script.js"></script>
 </body>
 </html>

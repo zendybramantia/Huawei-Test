@@ -44,6 +44,11 @@ async function sendDataToApi(data) {
       }
 };
 
+function displayUserInfo() {
+    var email = document.getElementById('emailInput').value;
+    var userInfoContainer = document.getElementById('userInfo');
+}
+
 function isValidEmail(email) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -51,8 +56,8 @@ function isValidEmail(email) {
 };
 
 function isValidNumber(input) {
-  const numberRegex = /^\d+$/
-  const isValid = numberRegex.test(input);
+    const numberRegex = /^\d+$/
+    const isValid = numberRegex.test(input);
 
-  return isValid;
+    return isValid;
 };

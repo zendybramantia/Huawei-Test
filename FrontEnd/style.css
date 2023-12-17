@@ -11,11 +11,19 @@ body {
 
 form {
     background-color: #fff;
+    margin: 20px;
     padding: 24px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+#userDisplay {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
 label {
     display: block;
     margin-bottom: 8px;
