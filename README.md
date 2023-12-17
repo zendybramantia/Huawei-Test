@@ -33,3 +33,12 @@ Untuk menjalankan backend, gunakan CMD dan masuk kedalam direktori backend/form-
 ```bash
 $ node src/main.js
 ```
+
+### Automation
+
+Untuk menjalankan automation testing, gunakan CMD dan masuk kedalam direktori automation, setelah itu jalankan perintah berikut:
+
+```bash
+$ python automation.py
+```
+
