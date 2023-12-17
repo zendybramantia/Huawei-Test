@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="userDisplay">
+        <h1>Find User By Email</h1>
+        <label for="email">Insert Email:</label>
+        <input type="email" id="emailInput" required>
+        <button id="findUserButton" onclick="displayUserInfo()">Search</button>
+        <div id="userInfo"></div>
+    </div>  
+
+    <div id="userDisplay">
+        <h1>Registered User</h1>
+        <table>
+            <thead>
+              <tr>
+                <th>name</th>
+                <th>Email</th>
+                <th>Phone</th>
+              </tr>
+            </thead>
+            <tbody id="tableBody">
+            </tbody>
+        </table>
+    </div> 
+
+    <script src="script.js"></script>
+
+</body>
+</html>
