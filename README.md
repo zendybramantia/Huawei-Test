@@ -24,7 +24,7 @@ Untuk menjalankan front end, gunakan CMD dan masuk kedalam direktori frontend, s
 $ http-server -p 3001
 ```
 
-setelah itu buka localhost:3000 di browser.
+setelah itu buka localhost:3001 di browser.
 
 ### Back End
 
