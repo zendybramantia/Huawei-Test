@@ -9,7 +9,13 @@ const registerUserValidation = Joi.object({
 
 const getUserByEmailValidation = Joi.string().max(100).required();
 
+const loginUserValidation = Joi.object({
+    email: Joi.string().max(100).required(),
+    password: Joi.string().max(100).required()
+});
+
 export{
     registerUserValidation,
-    getUserByEmailValidation
+    getUserByEmailValidation,
+    loginUserValidation
 };
