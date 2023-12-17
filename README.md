@@ -18,8 +18,10 @@ Setelah itu cek apakah table telah berhasil ditambahkan ke database.
 
 ### Front End
 
-Untuk menjalankan front end, gunakan CMD dan masuk kedalam direktori frontend, setelah itu gunakan http-server pada port 3001 untuk menjalankannya.
-
+Untuk menjalankan front end, gunakan CMD dan masuk kedalam direktori frontend, setelah itu install http-server dan gunakan http-server pada port 3001 untuk menjalankannya.
+```bash
+$ npm install http-server
+```
 ```bash
 $ http-server -p 3001
 ```
