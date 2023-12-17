@@ -1,3 +1,34 @@
+async function displayDataFromAPI() {
+    try {
+        const response = await fetch('http://localhost:3000/api/users');
+        if (!response.ok) {
+            throw new Error('Gagal mengambil data dari API');
+        }
+        const data = await response.json();
+        addDataToTable(data);
+    } catch (error) {
+        console.error('Error:', error.message);
+    }
+}
+  
+displayDataFromAPI();
+  
+function addDataToTable(data) {
+    var tableBody = document.getElementById('tableBody');
+    tableBody.innerHTML = '';
+
+    data.data.forEach(item => {
+        var newRow = tableBody.insertRow();
+        var cellNama = newRow.insertCell(0);
+        var cellEmail = newRow.insertCell(1);
+        var cellTelepon = newRow.insertCell(2);
+
+        cellNama.innerHTML = item.nama;
+        cellEmail.innerHTML = item.email;
+        cellTelepon.innerHTML = item.telepon;
+    });
+}
+
 function validateForm() {
     var nama = document.getElementById('nama').value;
     var email = document.getElementById('email').value;
@@ -68,6 +99,7 @@ function displayUserInfo() {
         userInfoContainer.innerHTML = '<p>Gagal mengambil data pengguna.</p>';
     });
 }
+
 
 function isValidEmail(email) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
