@@ -47,6 +47,26 @@ async function sendDataToApi(data) {
 function displayUserInfo() {
     var email = document.getElementById('emailInput').value;
     var userInfoContainer = document.getElementById('userInfo');
+
+    fetch('http://localhost:3000/api/users/' + email)
+    .then(response => {
+        if (!response.ok) {
+        throw new Error('Gagal mengambil data pengguna');
+        }
+        return response.json();
+    })
+    .then(userData => {
+        userInfoContainer.innerHTML = `
+        <h2>Informasi Pengguna</h2>
+        <p><strong>Nama:</strong> ${userData.data.nama}</p>
+        <p><strong>Email:</strong> ${userData.data.email}</p>
+        <p><strong>Telepon:</strong> ${userData.data.telepon}</p>
+        `;
+    })
+    .catch(error => {
+        console.error('Error:', error.message);
+        userInfoContainer.innerHTML = '<p>Gagal mengambil data pengguna.</p>';
+    });
 }
 
 function isValidEmail(email) {
