@@ -23,7 +23,20 @@ const getByEmail = async (req, res, next) => {
     }
 }
 
+
+const getUsers = async (req, res, next) => {
+    try {
+        const result = await userService.getUsers();
+        res.status(200).json({
+            data: result
+        });
+    } catch (e) {
+        next(e);
+    }
+}
+
 export default {
     register,
     getByEmail,
+    getUsers,
 }

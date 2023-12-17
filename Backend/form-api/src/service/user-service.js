@@ -46,7 +46,18 @@ const getByEmail = async (email) => {
     return user;
 }
 
+const getUsers = async () => {
+    return prismaClient.user.findMany({
+        select: {
+            email: true,
+            nama: true,
+            telepon: true,
+        }
+    });
+}
+
 export default {
     register,
     getByEmail,
+    getUsers,
 }
