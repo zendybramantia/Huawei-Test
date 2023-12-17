@@ -1,6 +1,6 @@
 import { prismaClient } from "../application/database.js";
 import { ResponseError } from "../error/response-error.js";
-import { registerUserValidation } from "../validation/user-validation.js";
+import { getUserByEmailValidation, registerUserValidation } from "../validation/user-validation.js";
 import { validate } from "../validation/validation.js";
 
 const register = async (request) => {
@@ -25,6 +25,28 @@ const register = async (request) => {
     });
 }
 
+const getByEmail = async (email) => {
+    email = validate(getUserByEmailValidation, email);
+
+    const user = await prismaClient.user.findFirst({
+        where: {
+            email: email
+        },
+        select: {
+            email: true,
+            nama: true,
+            telepon: true,
+        }
+    });
+
+    if (!user) {
+        throw new ResponseError(404, "user is not found");
+    }
+
+    return user;
+}
+
 export default {
     register,
+    getByEmail,
 }
